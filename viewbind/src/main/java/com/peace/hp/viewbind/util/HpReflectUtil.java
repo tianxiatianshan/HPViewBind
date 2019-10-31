@@ -1,6 +1,5 @@
 package com.peace.hp.viewbind.util;
 
-import android.util.Log;
 import android.view.View;
 
 import com.peace.hp.viewbind.annotation.BindView;
@@ -108,7 +107,7 @@ public class HpReflectUtil {
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                       invokeMethod(target, method, v);
+                        invokeMethod(target, method, v);
                     }
                 });
             }
@@ -140,7 +139,7 @@ public class HpReflectUtil {
             method.setAccessible(true);
             method.invoke(target, args);
         } catch (Exception e) {
-            throw new RuntimeException(method.getName() + ": invoke fail");
+            throw new RuntimeException(method.getName() + ": invoke fail!");
         }
     }
 }
