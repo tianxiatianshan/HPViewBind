@@ -11,22 +11,34 @@ import android.widget.Toast;
 import com.peace.hp.viewbind.HpBind;
 import com.peace.hp.viewbind.annotation.OnClick;
 import com.peace.hp.viewbind.annotation.BindView;
+import com.peace.hp.viewbind.annotation.RBindView;
 import com.peace.hp.viewbind.annotation.ROnClick;
 
 public class MainActivity extends AppCompatActivity {
 
     @BindView("button1") private Button mButton1;
-
-    @BindView("layout1") private ConstraintLayout mLayout;
-
-
+    @RBindView(R.id.button2) Button mButton2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         HpBind.bind(this);
-        mButton1.performClick();
+        mButton1.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Toast.makeText(MainActivity.this, "button1 long click",Toast.LENGTH_LONG).show();
+                return true;
+            }
+        });
+
+        mButton2.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Toast.makeText(MainActivity.this, "button2 long click", Toast.LENGTH_LONG).show();
+                return true;
+            }
+        });
     }
 
     @ROnClick(R.id.button1)
