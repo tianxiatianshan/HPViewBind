@@ -1,4 +1,4 @@
-package com.peace.hp.viewbind;
+package com.peace.hp.demo;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.peace.hp.viewbind", appContext.getPackageName());
+        assertEquals("com.peace.hp.viewbind.test", appContext.getPackageName());
     }
 }

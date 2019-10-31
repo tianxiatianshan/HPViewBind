@@ -1,4 +1,4 @@
-package com.peace.hp.viewbind;
+package com.peace.hp.demo;
 
 import org.junit.Test;
 
