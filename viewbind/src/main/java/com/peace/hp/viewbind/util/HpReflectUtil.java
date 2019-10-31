@@ -83,6 +83,7 @@ public class HpReflectUtil {
             try {
                 id = annotation.value();
                 temView = rootView.findViewById(id);
+                field.setAccessible(true);
                 if (temView != null) {
                     field.set(target, temView);
                 }
