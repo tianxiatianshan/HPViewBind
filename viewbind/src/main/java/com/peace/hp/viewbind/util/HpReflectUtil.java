@@ -139,7 +139,7 @@ public class HpReflectUtil {
             method.setAccessible(true);
             method.invoke(target, args);
         } catch (Exception e) {
-            throw new RuntimeException(method.getName() + "invoke fail");
+            throw new RuntimeException(method.getName() + ": invoke fail");
         }
     }
 }
