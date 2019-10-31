@@ -19,9 +19,8 @@ import java.lang.reflect.Method;
 public class HpReflectUtil {
 
     public static void startReflect(Object target, View rootView) {
-        if (rootView == null) {
-            throw new IllegalStateException("Binding method call location error!");
-        }
+
+        ObjectUtil.requireNonNull(rootView, "Binding method call location error!");
 
         Class<?> targetClass = target.getClass();
 
