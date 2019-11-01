@@ -20,7 +20,6 @@ public class HpReflectUtil {
     public static void startReflect(Object target, View rootView) {
 
         ObjectUtil.requireNonNull(rootView, "Binding method call location error!");
-
         Class<?> targetClass = target.getClass();
 
         //处理成员变量
@@ -59,16 +58,11 @@ public class HpReflectUtil {
         View temView;
         String resName, type;
         if (bindView != null) {
-            try {
-                resName = bindView.value();
-                type = bindView.type();
-                temView = rootView.findViewById(ResUtil.getResId(rootView.getContext(), resName, type));
-                field.setAccessible(true);
-                if (temView != null) {
-                    field.set(target, temView);
-                }
-            } catch (Exception e) {
-                throw new RuntimeException(bindView.value() + "inject error!");
+            resName = bindView.value();
+            type = bindView.type();
+            temView = rootView.findViewById(ResUtil.getResId(rootView.getContext(), resName, type));
+            if (temView != null) {
+                injectField(target, field, temView);
             }
         }
     }
@@ -78,18 +72,12 @@ public class HpReflectUtil {
         int id;
         View temView;
         if (rBindView != null) {
-            try {
-                id = rBindView.value();
-                temView = rootView.findViewById(id);
-                field.setAccessible(true);
-                if (temView != null) {
-                    field.set(target, temView);
-                }
-            } catch (Exception e) {
-                throw new RuntimeException(rBindView.value() + "inject error!");
+            id = rBindView.value();
+            temView = rootView.findViewById(id);
+            if (temView != null) {
+                injectField(target, field, temView);
             }
         }
-
     }
 
 
@@ -126,6 +114,15 @@ public class HpReflectUtil {
                     }
                 });
             }
+        }
+    }
+
+    private static void injectField(Object target, Field field, Object injectObj) {
+        try {
+            field.setAccessible(true);
+            field.set(target, injectObj);
+        } catch (Exception e) {
+            throw new RuntimeException(field.getName() + ": inject fail!");
         }
     }
 
