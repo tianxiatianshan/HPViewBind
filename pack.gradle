@@ -1,0 +1,31 @@
+def buildDir = "${rootDir}${File.separator}BuildResult"
+
+def moduleName = "viewbind"
+def jarDir = "${rootDir}${File.separator}${moduleName}${File.separator}build${File.separator}intermediates${File.separator}packaged-classes${File.separator}release"
+
+def jarName = "hp-viewbind"
+def version = "1.0.0"
+
+
+task deleteBuild() {
+    doLast {
+        delete(buildDir)
+    }
+}
+
+task makeJar(dependsOn: "deleteBuild") {
+    doLast {
+        exec {
+            workingDir = "${rootDir}"
+            commandLine "${rootDir}${File.separator}gradlew.bat", ":${moduleName}:assembleRelease"
+        }
+
+        copy {
+            from(jarDir) {
+                include "classes.jar"
+                rename "classes.jar", "${jarName}${version}.jar"
+            }
+            into "${buildDir}"
+        }
+    }
+}
