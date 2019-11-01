@@ -74,20 +74,19 @@ public class HpReflectUtil {
     }
 
     private static void parseRBindView(Object target, View rootView, Field field) {
-        RBindView annotation = field.getAnnotation(RBindView.class);
-
+        RBindView rBindView = field.getAnnotation(RBindView.class);
         int id;
         View temView;
-        if (annotation != null) {
+        if (rBindView != null) {
             try {
-                id = annotation.value();
+                id = rBindView.value();
                 temView = rootView.findViewById(id);
                 field.setAccessible(true);
                 if (temView != null) {
                     field.set(target, temView);
                 }
             } catch (Exception e) {
-                throw new RuntimeException(annotation.value() + "inject error!");
+                throw new RuntimeException(rBindView.value() + "inject error!");
             }
         }
 
@@ -96,11 +95,9 @@ public class HpReflectUtil {
 
     private static void parseOnClick(final Object target, View rootView, final Method method) {
         OnClick onClick = method.getAnnotation(OnClick.class);
-
         final String value;
         View view;
         if (onClick != null) {
-
             value = onClick.value();
             view = rootView.findViewById(ResUtil.getResId(rootView.getContext(), value, "id"));
             if (view != null) {
@@ -115,13 +112,11 @@ public class HpReflectUtil {
     }
 
     private static void parseROnClick(final Object target, View rootView, final Method method) {
-        ROnClick annotation = method.getAnnotation(ROnClick.class);
-
+        ROnClick rOnClick = method.getAnnotation(ROnClick.class);
         int id;
         View temView;
-        if (annotation != null) {
-
-            id = annotation.value();
+        if (rOnClick != null) {
+            id = rOnClick.value();
             temView = rootView.findViewById(id);
             if (temView != null) {
                 temView.setOnClickListener(new View.OnClickListener() {
