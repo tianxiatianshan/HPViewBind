@@ -68,7 +68,7 @@ public class HpReflectUtil {
                     field.set(target, temView);
                 }
             } catch (Exception e) {
-//                throw new RuntimeException("");
+                throw new RuntimeException(bindView.value() + "inject error!");
             }
         }
     }
@@ -87,7 +87,7 @@ public class HpReflectUtil {
                     field.set(target, temView);
                 }
             } catch (Exception e) {
-//                throw new RuntimeException("");
+                throw new RuntimeException(annotation.value() + "inject error!");
             }
         }
 
