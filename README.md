@@ -28,40 +28,40 @@ HpBind.bind(target, view)
 ### 具体使用可参照demo
 ```
 @BindView("button1")
-    private Button mButton1;
-    @RBindView(R.id.button2)
-    Button mButton2;
+private Button mButton1;
+@RBindView(R.id.button2)
+Button mButton2;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        HpBind.bind(this);
-        mButton1.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                Toast.makeText(MainActivity.this, "button1 long click", Toast.LENGTH_LONG).show();
-                return true;
-            }
-        });
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    HpBind.bind(this);
+    mButton1.setOnLongClickListener(new View.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+            Toast.makeText(MainActivity.this, "button1 long click", Toast.LENGTH_LONG).show();
+            return true;
+        }
+    });
 
-        mButton2.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                Toast.makeText(MainActivity.this, "button2 long click", Toast.LENGTH_LONG).show();
-                return true;
-            }
-        });
-    }
+    mButton2.setOnLongClickListener(new View.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+            Toast.makeText(MainActivity.this, "button2 long click", Toast.LENGTH_LONG).show();
+            return true;
+        }
+    });
+}
 
-    @ROnClick(R.id.button1)
-    public void hello(View view) {
-        Toast.makeText(this, "hellow1", Toast.LENGTH_LONG).show();
-    }
+@ROnClick(R.id.button1)
+public void hello(View view) {
+    Toast.makeText(this, "hellow1", Toast.LENGTH_LONG).show();
+}
 
-    @OnClick("button2")
-    public void hello1(View view) {
-        Toast.makeText(this, "hellow2", Toast.LENGTH_LONG).show();
-    }
+@OnClick("button2")
+public void hello1(View view) {
+    Toast.makeText(this, "hellow2", Toast.LENGTH_LONG).show();
+}
 
 ```
