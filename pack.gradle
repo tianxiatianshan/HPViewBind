@@ -29,3 +29,5 @@ task makeJar(dependsOn: "deleteBuild") {
         }
     }
 }
+
+// 执行 gradlew makeJar , 将viewbind库打包成jar放在 BuildResult目录下
