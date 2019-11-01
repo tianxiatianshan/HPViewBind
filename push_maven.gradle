@@ -1,0 +1,16 @@
+apply plugin: 'maven'
+
+uploadArchives {
+    repositories.mavenDeployer {
+
+
+        pom.groupId = 'com.peace.hp'
+        pom.artifactId = 'viewbind'
+        pom.version = '1.0.0'
+
+
+        repository(url: uri('E:/repo'))
+
+    }
+}
+
